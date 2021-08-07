@@ -226,8 +226,8 @@ uint8_t status, temp, data;
 typedef struct																					// REGISTER SETTINGS
 {
 
-	uint16  addr;
-	uint8   data;
+	uint16_t  addr;
+	uint8_t   data;
 
 }registerSetting_t;
 
