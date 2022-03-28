@@ -648,22 +648,32 @@ int main(void)
 
 	//HM data Tx commands for testing
   	//PORTB &= ~(1<<PB0);
+/*
 for(int i=0 ; i<12 ; i++)
 {
 	writeTXFIFO(HMDTx[i]);
 }
+*/
+
 while(1){
 
-	UART_TxChar(commandStrobe(STX));
-	UART_TxChar(commandStrobe(STX));
+	/*UART_TxChar(commandStrobe(STX));
     while(readReg(MARC_STATUS1)!=0x40);
 	UART_TxChar(commandStrobe(SIDLE));
 	for(int i=0 ; i<12 ; i++)
 	{
 		writeTXFIFO(HMDTx[i]);
 	}
-	
-	
+	*/
+	commandStrobe(SFRX);
+	commandStrobe(SRX);
+	while(readReg(MARC_STATUS1)!=0x80);
+    for(int i = 0; i < 12; i++)
+	{
+		readRXFIFO();
+		UART_TxChar(data);
+	}
+	commandStrobe(SIDLE);
 }
 	
 	
